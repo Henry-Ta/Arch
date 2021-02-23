@@ -2,6 +2,7 @@
 
 ## Step 1: Configures Wifi
 ```
+$ rfkill unblock all
 $ iwctl
 $ device list 		( chose wlan0 or any wifi network )
 $ station wlan0 scan
@@ -23,13 +24,14 @@ $ mkfs.ext4 /dev/sda4		( format partition for root )
 $ mkfs.ext4 /dev/sda1		( format partition for home )
 $ mkfs.ext4 /dev/sda7		( format partition for boot )
 $ mkswap /dev/sda2		( format partion for SWAP )
+$(mkfs.fat -F32 /dev/sda3)
 ```
 
 ## Step 4: Mount Partitions
 ```
 $ swapon /dev/sda2
 $ mount /dev/sda4 /mnt
-$ mkdir /mnt/boot /mnt/home /mnt/disk1 /mnt/disk2
+$ mkdir /mnt/boot /mnt/home /mnt/disk1 /mnt/disk2 /mnt/boot/efi
 $ mount /dev/sda1 /mnt/home
 $ mount /dev/sda7 /mnt/boot
 $ mount /dev/sda5 /mnt/disk1
@@ -38,7 +40,7 @@ $ mount /dev/sda6 /mnt/disk2
 
 ## Step 5 >: Start Arch Installation
 ```
-$ pacstrap /mnt base linux-lts linx-firmware neovim intel-ucode amd-ucode
+$ pacstrap /mnt base base-devel linux-lts linx-firmware neovim intel-ucode (amd-ucode)
 ```
 ```
 $ genfstab -U /mnt >> /mnt/etc/fstab
@@ -50,7 +52,7 @@ $ arch-chroot /mnt
 $ ln -sf /usr/share/zoneinfo/America/Vancouver /etc/localtime
 ```
 ```
-$ hwclock --systohc
+$ hwclock --systohc -u
 ```
 ```
 $ nvim /etc/locale.gen
@@ -71,7 +73,7 @@ KEYMAP=us
 ```
 $ nvim /etc/hostname
 
-arch-5547
+arch-5547 (arch-Y530)
 ```
 ```
 $ nvim /etc/hosts
@@ -81,10 +83,11 @@ $ nvim /etc/hosts
 127.0.1.1	arch-5547.localdomain	arch-5547
 ```
 ```
-$ pacman -S grub networkmanager network-manager-applet dialog mtools dosfstools base-devel linux-lts-headers bluez bluez-utils cups alsa-utils pulseaudio pulseaudio-bluetooth git reflector xdg-utils xdg-user-dirs
+$ pacman -S grub efibootmgr networkmanager network-manager-applet dialog mtools dosfstools base-devel linux-lts-headers bluez bluez-utils cups alsa-utils pulseaudio pulseaudio-bluetooth git reflector xdg-utils xdg-user-dirs
 ```
 ```
 $ grub-install /dev/sda
+$ (grub-install --target=x86_64-efi --efi-directory=/boot/efi)
 $ grub-mkconfig -o /boot/grub/grub.cfg
 ```
 ```
