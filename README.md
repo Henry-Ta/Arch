@@ -10,6 +10,11 @@ $ station wlan0 get-networks
 $ station wlan0 connect "wifi1"
 $ exit
 ```
+## Step 1+: Update the system clock
+```
+$ timedatectl set-ntp true
+$ timedatectl status
+```
 
 ## Step 2: Disk Partition
 ```
@@ -24,14 +29,14 @@ $ mkfs.ext4 /dev/sda4		( format partition for root )
 $ mkfs.ext4 /dev/sda1		( format partition for home )
 $ mkfs.ext4 /dev/sda7		( format partition for boot )
 $ mkswap /dev/sda2		( format partion for SWAP )
-$(mkfs.fat -F32 /dev/sda3)
+$(mkfs.fat -F32 /dev/sda3 	  format boot/efi for UEFI system)
 ```
 
 ## Step 4: Mount Partitions
 ```
 $ swapon /dev/sda2
 $ mount /dev/sda4 /mnt
-$ mkdir /mnt/boot /mnt/home /mnt/disk1 /mnt/disk2 /mnt/boot/efi
+$ mkdir -p /mnt/boot (/mnt/boot/efi) /mnt/home /mnt/disk1 /mnt/disk2 
 $ mount /dev/sda1 /mnt/home
 $ mount /dev/sda7 /mnt/boot
 $ mount /dev/sda5 /mnt/disk1
@@ -40,7 +45,7 @@ $ mount /dev/sda6 /mnt/disk2
 
 ## Step 5 >: Start Arch Installation
 ```
-$ pacstrap /mnt base base-devel linux-lts linx-firmware neovim intel-ucode (amd-ucode)
+$ pacstrap /mnt base linux linx-firmware neovim intel-ucode (amd-ucode)
 ```
 ```
 $ genfstab -U /mnt >> /mnt/etc/fstab
@@ -83,17 +88,20 @@ $ nvim /etc/hosts
 127.0.1.1	arch-5547.localdomain	arch-5547
 ```
 ```
-$ pacman -S grub efibootmgr networkmanager network-manager-applet dialog mtools dosfstools base-devel linux-lts-headers bluez bluez-utils cups alsa-utils pulseaudio pulseaudio-bluetooth git reflector xdg-utils xdg-user-dirs
+$ pacman -S grub efibootmgr networkmanager network-manager-applet dialog wpa_supplicant mtools dosfstools base-devel linux-headers (linux-lts-headers) bash-completion bluez bluez-utils cups hplip inetutils dnsutils nfs-utils gvfs gvfs-smb openssh tlp powertop alsa-utils pulseaudio pulseaudio-bluetooth git reflector xdg-utils xdg-user-dirs acpi acpi_call rsync 
+
 ```
 ```
 $ grub-install /dev/sda
-$ (grub-install --target=x86_64-efi --efi-directory=/boot/efi)
+$ (grub-install --target=x86_64-efi bootloader-id=GRUB --efi-directory=/boot/efi)
 $ grub-mkconfig -o /boot/grub/grub.cfg
 ```
 ```
 $ systemctl enable NetworkManager
 $ systemctl enable bluetooth
 $ systemctl enable cups
+$ systemctl enable sshd
+$ systemctl enable tlp
 ```
 ```
 $ passwd
