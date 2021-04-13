@@ -88,7 +88,7 @@ $ nvim /etc/hosts
 127.0.1.1	arch-5547.localdomain	arch-5547
 ```
 ```
-$ pacman -S grub efibootmgr networkmanager network-manager-applet dialog wpa_supplicant mtools dosfstools base-devel linux-headers (linux-lts-headers) bash-completion bluez bluez-utils cups hplip inetutils dnsutils nfs-utils gvfs gvfs-smb openssh tlp powertop alsa-utils pulseaudio pulseaudio-bluetooth git reflector xdg-utils xdg-user-dirs acpi acpi_call rsync 
+$ pacman -S grub efibootmgr networkmanager network-manager-applet wpa_supplicant wireless_tools netctl ntp dialog mtools dosfstools base-devel linux-headers (linux-lts-headers) bash-completion bluez bluez-utils cups hplip gvfs openssh tlp powertop alsa-utils pulseaudio pulseaudio-bluetooth git reflector xdg-utils xdg-user-dirs
 
 ```
 ```
@@ -102,10 +102,11 @@ $ systemctl enable bluetooth
 $ systemctl enable cups
 $ systemctl enable sshd
 $ systemctl enable tlp
+$ systemctl enable ntpd
 ```
 ```
 $ passwd
-$ useradd -m henry
+$ useradd -m -g users -G wheel henry
 $ passwd henry
 $ nvim /etc/sudoers
 ```
