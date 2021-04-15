@@ -1,6 +1,6 @@
 # Arch Installation
 
-## Step 1: Configures Wifi
+## Configures Wifi
 ```
 $ rfkill unblock all
 $ iwctl
@@ -10,20 +10,20 @@ $ station wlan0 get-networks
 $ station wlan0 connect "wifi1"
 $ exit
 ```
-## Step 1+: Update the system clock
+## Update the system clock
 ```
 $ timedatectl set-ntp true
 $ timedatectl status
 ```
 
-## Step 2: Disk Partition
+## Disk Partition
 ```
 $ lsblk
 $ fdisk -l
 $ cfdisk /dev/sda 
 ```
 
-## Step 3: Formats Partitions
+## Formats Partitions
 ```
 $ mkfs.ext4 /dev/sda4		( format partition for root )
 $ mkfs.ext4 /dev/sda1		( format partition for home )
@@ -32,7 +32,7 @@ $ mkswap /dev/sda2		( format partion for SWAP )
 $(mkfs.fat -F32 /dev/sda3 	  format boot/efi for UEFI system)
 ```
 
-## Step 4: Mount Partitions
+## Mount Partitions
 ```
 $ swapon /dev/sda2
 $ mount /dev/sda4 /mnt
@@ -43,9 +43,9 @@ $ mount /dev/sda5 /mnt/disk1
 $ mount /dev/sda6 /mnt/disk2
 ```
 
-## Step 5 >: Start Arch Installation
+## Start Arch Installation
 ```
-$ pacstrap /mnt base linux linx-firmware neovim intel-ucode (amd-ucode)
+$ pacstrap /mnt base linux(linux-lts) linx-firmware neovim intel-ucode (amd-ucode)
 ```
 ```
 $ genfstab -U /mnt >> /mnt/etc/fstab
