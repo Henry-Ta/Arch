@@ -97,12 +97,16 @@ $ (grub-install --target=x86_64-efi bootloader-id=GRUB --efi-directory=/boot/efi
 $ grub-mkconfig -o /boot/grub/grub.cfg
 ```
 ```
+$ nvim /etc/xdg/reflector/reflector.conf
+```
+```
 $ systemctl enable NetworkManager
 $ systemctl enable bluetooth
 $ systemctl enable cups
 $ systemctl enable sshd
 $ systemctl enable tlp
 $ systemctl enable ntpd
+$ systemctl enable reflector
 ```
 ```
 $ passwd
