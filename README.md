@@ -88,7 +88,7 @@ $ nvim /etc/hosts
 127.0.1.1	arch-5547.localdomain	arch-5547
 ```
 ```
-$ pacman -S grub efibootmgr networkmanager network-manager-applet wpa_supplicant wireless_tools netctl ntp dialog mtools dosfstools base-devel linux-headers (linux-lts-headers) bash-completion bluez bluez-utils cups hplip gvfs openssh tlp powertop alsa-utils pulseaudio pulseaudio-bluetooth git reflector xdg-utils xdg-user-dirs
+$ pacman -S grub efibootmgr networkmanager network-manager-applet wpa_supplicant wireless_tools netctl ntp dialog mtools dosfstools base-devel linux-headers (linux-lts-headers) bash-completion bluez bluez-utils cups hplip gvfs openssh tlp powertop alsa-utils pulseaudio pulseaudio-bluetooth git (reflector) xdg-utils xdg-user-dirs
 
 ```
 ```
@@ -97,16 +97,18 @@ $ (grub-install --target=x86_64-efi bootloader-id=GRUB --efi-directory=/boot/efi
 $ grub-mkconfig -o /boot/grub/grub.cfg
 ```
 ```
-$ nvim /etc/xdg/reflector/reflector.conf
-```
-```
 $ systemctl enable NetworkManager
 $ systemctl enable bluetooth
 $ systemctl enable cups
 $ systemctl enable sshd
 $ systemctl enable tlp
 $ systemctl enable ntpd
-$ systemctl enable reflector
+
+```
+
+```
+($ nvim /etc/xdg/reflector/reflector.conf)
+($ systemctl enable reflector)
 ```
 ```
 $ passwd
