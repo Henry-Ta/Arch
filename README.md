@@ -12,6 +12,7 @@ $ exit
 ```
 ## Update the system clock
 ```
+$ pacman -Syy
 $ timedatectl set-ntp true
 $ timedatectl status
 ```
