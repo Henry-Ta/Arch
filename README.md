@@ -48,7 +48,7 @@ $ mount /dev/sda6 /mnt/home
 
 ## Start Arch Installation
 ```
-$ pacstrap /mnt base linux/linux-lts linx-firmware neovim intel-ucode (amd-ucode)
+$ pacstrap /mnt base linux/linux-lts linux-firmware neovim intel-ucode (amd-ucode)
 ```
 ```
 $ genfstab -U /mnt >> /mnt/etc/fstab
