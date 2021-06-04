@@ -91,7 +91,7 @@ $ nvim /etc/hosts
 127.0.1.1	arch-5547.localdomain	arch-5547
 ```
 ```
-$ pacman -S grub efibootmgr networkmanager network-manager-applet wpa_supplicant wireless_tools netctl ntp dialog mtools dosfstools base-devel (linux-headers) linux-lts-headers bash-completion bluez bluez-utils cups hplip gvfs openssh tlp powertop alsa-utils pulseaudio pacman-contrib playerctl git xdg-utils xdg-user-dirs
+$ pacman -S grub efibootmgr networkmanager network-manager-applet wpa_supplicant wireless_tools netctl ntp dialog mtools dosfstools base-devel (linux-headers) linux-lts-headers (bash-completion) bluez bluez-utils cups hplip gvfs openssh tlp powertop alsa-utils pulseaudio pacman-contrib playerctl git xdg-utils xdg-user-dirs
 
 ```
 ```
