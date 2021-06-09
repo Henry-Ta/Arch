@@ -48,7 +48,7 @@ $ mount /dev/sda6 /mnt/home
 
 ## Start Arch Installation
 ```
-$ pacstrap /mnt base linux/linux-lts linux-firmware neovim intel-ucode (amd-ucode)
+$ pacstrap /mnt base base-devel linux/linux-lts linux-firmware neovim intel-ucode (amd-ucode)
 ```
 ```
 $ genfstab -U /mnt >> /mnt/etc/fstab
@@ -91,7 +91,8 @@ $ nvim /etc/hosts
 127.0.1.1	arch-5547.localdomain	arch-5547
 ```
 ```
-$ pacman -S grub efibootmgr networkmanager network-manager-applet wpa_supplicant wireless_tools netctl ntp dialog mtools dosfstools base-devel (linux-headers) linux-lts-headers (bash-completion) bluez bluez-utils cups hplip gvfs openssh tlp powertop alsa-utils pulseaudio pacman-contrib playerctl git xdg-utils xdg-user-dirs
+$ pacman -S grub efibootmgr networkmanager network-manager-applet ntp dialog mtools dosfstools (linux-headers) linux-lts-headers bluez bluez-utils cups hplip gvfs openssh tlp alsa-utils pulseaudio pacman-contrib git xdg-utils xdg-user-dirs playerctl 
+(bash-completion powertop )
 
 ```
 ```
