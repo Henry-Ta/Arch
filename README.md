@@ -100,7 +100,7 @@ $ echo "127.0.1.1     arch-Y530.localdomain	arch-Y530"      >> /etc/hosts
 ```
 
 ```
-$ pacman -S grub efibootmgr networkmanager network-manager-applet ntp dialog mtools dosfstools (linux-headers) linux-lts-headers bluez bluez-utils cups hplip gvfs openssh tlp tlp-rdw alsa-utils pulseaudio pacman-contrib git xdg-utils xdg-user-dirs playerctl
+$ pacman -S grub efibootmgr (netctl dhcpcd dialog wpa_supplicant)/(networkmanager network-manager-applet) ntp dialog mtools dosfstools (linux-headers) linux-lts-headers bluez bluez-utils cups hplip gvfs openssh tlp tlp-rdw alsa-utils pulseaudio pacman-contrib git xdg-utils xdg-user-dirs playerctl
 (bash-completion, powertop -> various powersaving modes )
 ```
 
@@ -117,6 +117,8 @@ $ systemctl enable cups
 $ systemctl enable sshd
 $ systemctl enable ntpd
 $ systemctl enable tlp
+
+($ systemctl enable netctl ; systemctl enable dhcpcd ; systemctl enable wpa_supplicant)
 ```
 
 ```
